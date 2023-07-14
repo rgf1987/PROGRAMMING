@@ -9,15 +9,15 @@ import { ResponseBoxUserDto } from './models/boxUser.model';
 })
 export class AppComponent {
   title = 'crossfitmieres_front';
-  http = Inject(HttpClient);
+  //http = Inject(HttpClient);
   boxUsers: ResponseBoxUserDto[] = [];
 
-  changeTitle(){
-    this.title = 'changed';
+  constructor(private http:HttpClient) {
   }
 
+
   ngOnInit(){
-    this.http.get('https://localhost:4200/api/boxUsers/findAllBoxUsers')
+    this.http.get('http://localhost:8080/api/boxUsers/findAllBoxUsers')
       .subscribe((data: any) => {
         this.boxUsers = data;
       });
